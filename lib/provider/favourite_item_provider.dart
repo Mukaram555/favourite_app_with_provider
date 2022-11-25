@@ -8,13 +8,11 @@ class FavouriteItemProvider with ChangeNotifier{
 
   void getValue(int value){
     _favouriteItem.add(value);
-    print("function Called");
     notifyListeners();
   }
 
   void unlikeValue(int value){
     _favouriteItem.remove(value);
-    print("function Called");
     notifyListeners();
   }
 

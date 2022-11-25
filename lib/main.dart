@@ -1,4 +1,5 @@
 import 'package:favouriteapp/provider/favourite_item_provider.dart';
+import 'package:favouriteapp/provider/theme_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -14,11 +15,20 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (_) => FavouriteItemProvider(),
-      child:const MaterialApp(
-        home: FavouriteApp(),
-      ),
+    return MultiProvider(providers: [
+        ChangeNotifierProvider(
+        create: (_) => FavouriteItemProvider()),
+      ChangeNotifierProvider(create: (_)=>ThemeProvider()),
+    ],
+      child:Builder(builder: (BuildContext context){
+        return MaterialApp(
+          darkTheme: ThemeData(
+            brightness: Brightness.dark,
+          ),
+          themeMode: Provider.of<ThemeProvider>(context).themedata,
+          home: const FavouriteApp(),
+        );
+      })
     );
   }
 }
