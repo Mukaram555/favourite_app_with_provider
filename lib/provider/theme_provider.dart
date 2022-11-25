@@ -5,10 +5,10 @@ class ThemeProvider with ChangeNotifier{
 
   var _themeData = ThemeMode.light;
 
-  ThemeMode get themedata =>_themeData;
+  ThemeMode get themeData =>_themeData;
 
-  void getThemeData(themedata){
-    _themeData = themedata;
+  void getThemeData(themeData){
+    _themeData = themeData;
     notifyListeners();
   }
 }

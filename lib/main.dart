@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
           darkTheme: ThemeData(
             brightness: Brightness.dark,
           ),
-          themeMode: Provider.of<ThemeProvider>(context).themedata,
+          themeMode: Provider.of<ThemeProvider>(context).themeData,
           home: const FavouriteApp(),
         );
       })

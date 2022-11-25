@@ -45,17 +45,17 @@ class _FavouriteAppState extends State<FavouriteApp> {
                   RadioListTile<ThemeMode>(
                       title: const Text("Light Mode"),
                       value: ThemeMode.light,
-                      groupValue: value.themedata,
+                      groupValue: value.themeData,
                       onChanged: value.getThemeData),
                   RadioListTile<ThemeMode>(
                       title: const Text("Dark Mode"),
                       value: ThemeMode.dark,
-                      groupValue: value.themedata,
+                      groupValue: value.themeData,
                       onChanged: value.getThemeData),
                   RadioListTile<ThemeMode>(
                       title: const Text("System Mode"),
                       value: ThemeMode.system,
-                      groupValue: value.themedata,
+                      groupValue: value.themeData,
                       onChanged: value.getThemeData),
                 ],
               );
