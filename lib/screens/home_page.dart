@@ -15,30 +15,10 @@ class FavouriteApp extends StatefulWidget {
 class _FavouriteAppState extends State<FavouriteApp> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("Favourite App"),
-        actions: [
-          const SizedBox(
-            width: 20,
-          ),
-          InkWell(
-            onTap: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const FavouriteItem()));
-            },
-            child: const Icon(Icons.favorite),
-          ),
-          const SizedBox(
-            width: 20,
-          ),
-        ],
-      ),
-      body: Column(
-        children: [
-          Expanded(child: Consumer<ThemeProvider>(
+    return SafeArea(
+      child: Scaffold(
+        drawer: Drawer(
+          child: Expanded(child: Consumer<ThemeProvider>(
             builder: (context, value, child) {
               return Column(
                 children: [
@@ -61,32 +41,58 @@ class _FavouriteAppState extends State<FavouriteApp> {
               );
             },
           )),
-          Expanded(
-            flex: 2,
-            child: ListView.builder(
-              itemCount: 1000,
-              itemBuilder: (context, index) {
-                return Consumer<FavouriteItemProvider>(
-                    builder: (context, value, child) {
-                  return ListTile(
-                    onTap: () {
-                      if (value.favouriteCount.contains(index)) {
-                        value.unlikeValue(index);
-                      } else {
-                        value.getValue(index);
-                      }
-                    },
-                    title: const Text("Favourite "),
-                    leading: Text(index.toString()),
-                    trailing: value.favouriteCount.contains(index)
-                        ? const Icon(Icons.favorite)
-                        : const Icon(Icons.favorite_outline),
-                  );
-                });
-              },
+        ),
+        appBar: AppBar(
+          title: const Text("Favourite App"),
+          centerTitle: true,
+          backgroundColor: Colors.purple,
+          actions: [
+            const SizedBox(
+              width: 20,
             ),
-          ),
-        ],
+            InkWell(
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const FavouriteItem()));
+              },
+              child: const Icon(Icons.favorite),
+            ),
+            const SizedBox(
+              width: 20,
+            ),
+          ],
+        ),
+        body: Column(
+          children: [
+            Expanded(
+              flex: 1,
+              child: ListView.builder(
+                itemCount: 1000,
+                itemBuilder: (context, index) {
+                  return Consumer<FavouriteItemProvider>(
+                      builder: (context, value, child) {
+                    return ListTile(
+                      onTap: () {
+                        if (value.favouriteCount.contains(index)) {
+                          value.unlikeValue(index);
+                        } else {
+                          value.getValue(index);
+                        }
+                      },
+                      title: const Text("Favourite "),
+                      leading: Text(index.toString()),
+                      trailing: value.favouriteCount.contains(index)
+                          ? const Icon(Icons.favorite)
+                          : const Icon(Icons.favorite_outline),
+                    );
+                  });
+                },
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

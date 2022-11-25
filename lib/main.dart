@@ -22,6 +22,7 @@ class MyApp extends StatelessWidget {
     ],
       child:Builder(builder: (BuildContext context){
         return MaterialApp(
+          debugShowCheckedModeBanner: false,
           darkTheme: ThemeData(
             brightness: Brightness.dark,
           ),
